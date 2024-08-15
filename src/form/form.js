@@ -13,7 +13,7 @@ form.addEventListener("submit", async (event) => {
     if (formIsValid(article)) {
         try {
             const json = JSON.stringify(article);
-            const response = await fetch("https://restapi.fr/api/article", {
+            const response = await fetch("https://restapi.fr/api/articles", {
                 method: "POST",
                 body: json,
                 headers: {
@@ -30,7 +30,13 @@ form.addEventListener("submit", async (event) => {
 });
 
 const formIsValid = (article) => {
-    if (!article.author || !article.category || !article.content) {
+    if (
+        !article.author ||
+        !article.category ||
+        !article.content ||
+        !article.img ||
+        !article.title
+    ) {
         errors.push("Vous devez renseigner tous les champs");
     } else {
         errors = [];
